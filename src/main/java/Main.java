@@ -32,11 +32,18 @@ public class Main {
             boolean fileCreated = file.createNewFile();
 
             FileWriter fileWriter = new FileWriter(file, true); // Open in append mode
-            fileWriter.write(LocalDateTime.now() + " " + keystrokeDataCollector.getEnterCount() + "\n");
+            fileWriter.write(LocalDateTime.now() + " " +
+                    keystrokeDataCollector.getEnterCount() + " " +
+                    keystrokeDataCollector.getSpaceBarCount() + " " +
+                    mouseDataCollector.getNumberClicks()  + "\n");
             fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        keystrokeDataCollector.setEnterCount(0);
+        keystrokeDataCollector.setSpaceBarCount(0);
+        mouseDataCollector.setNumberClicks(0);
     }
 
     public static void main(String[] args) {
@@ -49,17 +56,16 @@ public class Main {
 
             System.exit(1);
         }
+
         KeystrokeDataCollector keystrokeDataCollector = new KeystrokeDataCollector();
         MouseDataCollector mouseDataCollector = new MouseDataCollector();
 
         GlobalScreen.addNativeKeyListener(keystrokeDataCollector);
         GlobalScreen.addNativeMouseListener(mouseDataCollector);
-        GlobalScreen.addNativeMouseMotionListener(mouseDataCollector);
 
         new Thread(() -> {
             while (true) {
-                System.out.println(keystrokeDataCollector.getEnterCount());
-                System.out.println(mouseDataCollector.getNumberClicks());
+                uploadDataBasedOnTime(keystrokeDataCollector, mouseDataCollector);
             }
         }).start();
     }
