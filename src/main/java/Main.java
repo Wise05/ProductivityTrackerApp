@@ -5,8 +5,10 @@ import UserInterface.OpenGuiListener;
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
 
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         try {
             GlobalScreen.registerNativeHook();
         }

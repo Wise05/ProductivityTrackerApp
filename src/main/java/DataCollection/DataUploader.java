@@ -15,7 +15,7 @@ public class DataUploader {
                 now.getMonthValue() > lastRecordedTime.getMonthValue() ||
                 now.getYear() > lastRecordedTime.getYear() ||
                 fileName.isEmpty()) {
-            fileName = now.getDayOfYear() + " " + now.getYear();
+            fileName = now.getYear() + " " + now.getMonthValue() + " " + now.getDayOfMonth();
         }
 
         if (now.getMinute() != lastRecordedTime.getMinute()) {
