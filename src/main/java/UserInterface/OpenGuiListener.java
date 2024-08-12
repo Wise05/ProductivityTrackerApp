@@ -8,8 +8,8 @@ import java.io.IOException;
 
 public class OpenGuiListener implements NativeKeyListener {
     public void nativeKeyPressed(NativeKeyEvent e) {
-        if (e.getKeyCode() == 41) { //41 key code is this `
-            ProcessBuilder pb = new ProcessBuilder("python", "C:\\Users\\zevan\\IdeaProjects\\Productivity Tracker App\\src\\main\\java\\GraphMaker\\PyMain.py", "arg1", "arg2");
+        if (e.getKeyCode() == 41) { //41 key code is this ` the button below esc, which I don't use
+            ProcessBuilder pb = new ProcessBuilder("python", "C:\\Users\\zevan\\IdeaProjects\\Productivity Tracker App\\src\\main\\java\\GraphMaker\\TakeTheDataAndRun.py", "arg1", "arg2");
             try {
                 Process p = pb.start();
                 int exitCode = p.waitFor();

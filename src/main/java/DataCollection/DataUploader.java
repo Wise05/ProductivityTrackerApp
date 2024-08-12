@@ -30,10 +30,11 @@ public class DataUploader {
             boolean fileCreated = file.createNewFile();
 
             java.io.FileWriter fileWriter = new java.io.FileWriter(file, true);
-            fileWriter.write(LocalDateTime.now() + " " +
-                    keystrokeDataCollector.getEnterCount() + " " +
-                    keystrokeDataCollector.getSpaceBarCount() + " " +
-                    mouseDataCollector.getNumberClicks()  + "\n");
+            fileWriter.write(LocalDateTime.now().getHour() + "," +
+                    LocalDateTime.now().getMinute() + "," +
+                    keystrokeDataCollector.getEnterCount() + "," +
+                    keystrokeDataCollector.getSpaceBarCount() + "," +
+                    mouseDataCollector.getNumberClicks()  + ",\n");
             fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
