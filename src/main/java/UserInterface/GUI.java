@@ -7,9 +7,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
 public class GUI extends JFrame implements ActionListener {
+    File dirPath = new File("C:\\Users\\zevan\\IdeaProjects\\Productivity Tracker App\\src\\main\\graphs");
+    String[] fileNames = dirPath.list();
+    String[] graphNames;
+
+    {
+        assert fileNames != null;
+        graphNames = takeAwayPNG(fileNames);
+    }
+    ImageIcon[] imageIcons = new ImageIcon[fileNames.length];
+    ImageIcon[] scaledIcons = new ImageIcon[fileNames.length];
+    JLabel graphLabel = new JLabel();
+    JRadioButton[] buttons = new JRadioButton[graphNames.length];
+
     public GUI() throws IOException {
         GlobalScreen.setEventDispatcher(new SwingDispatchService());
 
@@ -18,14 +32,37 @@ public class GUI extends JFrame implements ActionListener {
         this.setLayout(null);
         this.setResizable(false);
 
-        JLabel label = new JLabel();
-        label.setVerticalAlignment(JLabel.TOP);
-        label.setBounds(0, 0, 500, 500);
+        graphLabel.setVerticalAlignment(JLabel.TOP);
+        graphLabel.setBounds(0, 0, 600, 600);
 
-        ImageIcon imageIcon = new ImageIcon("C:\\Users\\zevan\\IdeaProjects\\Productivity Tracker App\\src\\main\\graphs\\graph1.png");
-        label.setIcon(imageIcon);
-        label.setBackground(Color.BLACK);
-        this.add(label);
+        for (int i = 0; i < fileNames.length; i++) {
+            imageIcons[i] = new ImageIcon(dirPath + "\\" + fileNames[i]);
+            Image scaledImage = imageIcons[i].getImage().getScaledInstance(550, 550, Image.SCALE_SMOOTH);
+            scaledIcons[i] = new ImageIcon(scaledImage);
+        }
+
+        graphLabel.setIcon(scaledIcons[0]);
+        graphLabel.setBackground(Color.BLACK);
+
+        JLabel buttonsLabel = new JLabel();
+        buttonsLabel.setVerticalAlignment(JLabel.TOP);
+        buttonsLabel.setBounds(550, 0, 450, 500);
+        buttonsLabel.setOpaque(true);
+        buttonsLabel.setVisible(true);
+        buttonsLabel.setLayout(new BoxLayout(buttonsLabel, BoxLayout.Y_AXIS));
+
+        ButtonGroup group = new ButtonGroup();
+        for (int i = 0; i < graphNames.length; i++) {
+            buttons[i] = new JRadioButton(graphNames[i]);
+            buttons[i].setBackground(Color.WHITE);
+            group.add(buttons[i]);
+            buttons[i].addActionListener(this);
+            buttonsLabel.add(buttons[i]);
+        }
+        buttonsLabel.setBackground(Color.WHITE);
+
+        this.add(graphLabel);
+        this.add(buttonsLabel);
 
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -42,6 +79,18 @@ public class GUI extends JFrame implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        for (int i = 0; i < fileNames.length; i++) {
+            if (e.getSource() == buttons[i]) {
+                graphLabel.setIcon(scaledIcons[i]);
+            }
+        }
+    }
 
+    private String[] takeAwayPNG(String[] s) {
+        String[] output = new String[s.length];
+        for (int i = 0; i < s.length; i++) {
+            output[i] = s[i].substring(0, s[i].length() - 4);
+        }
+        return output;
     }
 }
