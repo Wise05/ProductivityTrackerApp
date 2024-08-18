@@ -23,6 +23,7 @@ public class GUI extends JFrame implements ActionListener {
     ImageIcon[] scaledIcons = new ImageIcon[fileNames.length];
     JLabel graphLabel = new JLabel();
     JRadioButton[] buttons = new JRadioButton[graphNames.length];
+    JButton stopButton = new JButton("Stop Program");
 
     public GUI() throws IOException {
         GlobalScreen.setEventDispatcher(new SwingDispatchService());
@@ -31,6 +32,7 @@ public class GUI extends JFrame implements ActionListener {
         this.setSize(1000,600);
         this.setLayout(null);
         this.setResizable(false);
+        this.setTitle("Keystroke Graphs");
 
         graphLabel.setVerticalAlignment(JLabel.TOP);
         graphLabel.setBounds(0, 0, 600, 600);
@@ -61,8 +63,12 @@ public class GUI extends JFrame implements ActionListener {
         }
         buttonsLabel.setBackground(Color.WHITE);
 
+        stopButton.setBounds(550, 500, 450, 50);
+        stopButton.addActionListener(this);
+
         this.add(graphLabel);
         this.add(buttonsLabel);
+        this.add(stopButton);
 
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -83,6 +89,9 @@ public class GUI extends JFrame implements ActionListener {
             if (e.getSource() == buttons[i]) {
                 graphLabel.setIcon(scaledIcons[i]);
             }
+        }
+        if (e.getSource() == stopButton) {
+            System.exit(0);
         }
     }
 
