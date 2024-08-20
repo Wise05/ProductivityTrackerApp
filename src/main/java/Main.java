@@ -4,6 +4,7 @@ import DataCollection.MouseDataCollector;
 import UserInterface.OpenGuiListener;
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
+import org.w3c.dom.ls.LSOutput;
 
 import java.io.IOException;
 

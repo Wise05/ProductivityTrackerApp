@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Productivity Tracker App:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Productivity_Tracker_App_jar</output-path>
+    <root id="archive" name="Productivity Tracker App.jar">
+      <element id="module-output" name="Productivity Tracker App" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/github/kwhat/jnativehook/2.2.2/jnativehook-2.2.2.jar" path-in-jar="/" />
+      <element id="library" level="application" name="Python 3.11 (OpeningNewWindowWithSwing) interpreter library" />
+      <element id="library" level="project" name="Maven: com.github.kwhat:jnativehook:2.2.2" />
+    </root>
+  </artifact>
+</component>
