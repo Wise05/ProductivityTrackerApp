@@ -12,11 +12,11 @@ The rest of this READ.ME is screen shots of some of my graphs after some usage.
 
 <img src="https://github.com/user-attachments/assets/0ce6a523-be6a-4a57-aafe-4765781b49c3">
 This is the GUI showing the frequency of my clicks in a month (past 30 days). This graph really just represents when I remembered to turn on the program to do any work.
-
+<br>
 <img src="https://github.com/user-attachments/assets/b26cd687-f1cc-408d-b613-3027b2d3a0ab">
 Some graphs don't look too good. This is the number of clicks in the past 24 hours. You can see that spike at the end because I turned on the program for five minutes before writing this. 
-
+<br>
 <img src="https://github.com/user-attachments/assets/76283839-27a1-46be-b1cb-7e43b60356d2">
 I also made some of the graphs cumulative. This shows the increasing amount of times I've pressed enter in the past 30 days. 
-
+<br>
 Thanks for reading my READ.ME.
