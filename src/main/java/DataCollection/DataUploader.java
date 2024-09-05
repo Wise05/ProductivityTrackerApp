@@ -8,7 +8,7 @@ public class DataUploader {
     private static LocalDateTime lastRecordedTime = LocalDateTime.now();
     private static String fileName = "";
 
-    public static void uploadDataBasedOnTime(KeystrokeDataCollector keystrokeDataCollector, MouseDataCollector mouseDataCollector) {
+    public static void uploadDataBasedOnTime(KeystrokeDataCollector keystrokeDataCollector, MouseDataCollector mouseDataCollector) throws InterruptedException {
         LocalDateTime now = LocalDateTime.now();
 
         if (now.getDayOfMonth() > lastRecordedTime.getDayOfMonth() ||
@@ -21,6 +21,7 @@ public class DataUploader {
         if (now.getMinute() != lastRecordedTime.getMinute()) {
             lastRecordedTime = now;
             uploadNums(keystrokeDataCollector, mouseDataCollector);
+            Thread.sleep(1000);
         }
     }
 

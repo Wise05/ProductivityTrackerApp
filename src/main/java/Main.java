@@ -4,12 +4,9 @@ import DataCollection.MouseDataCollector;
 import UserInterface.OpenGuiListener;
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
-import org.w3c.dom.ls.LSOutput;
-
-import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         try {
             GlobalScreen.registerNativeHook();
         }
@@ -30,7 +27,11 @@ public class Main {
 
         new Thread(() -> {
             while (true) {
-                DataUploader.uploadDataBasedOnTime(keystrokeDataCollector, mouseDataCollector);
+                try {
+                    DataUploader.uploadDataBasedOnTime(keystrokeDataCollector, mouseDataCollector);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }).start();
     }
